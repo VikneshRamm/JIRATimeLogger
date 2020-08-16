@@ -1,6 +1,10 @@
 const app = require("./backend/app");
 const debug = require("debug")("server");
 const http = require("http");
+const express = require("express");
+
+const distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
 const normalizePort = val => {
   var port = parseInt(val, 10);
