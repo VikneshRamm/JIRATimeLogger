@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { version } from '../../../package.json';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -21,7 +22,8 @@ export class FooterComponent implements OnInit {
   }
 
   getDataFromServer() {
-    this.http.get<{time: string}>('http://localhost:3000/api/time').subscribe((response) => {
+    const API_URL = environment.production ? '/api/time' : 'http://localhost:8080/api/time';
+    this.http.get<{time: string}>(API_URL).subscribe((response) => {
       this.dataFromServer = response.time;
     }, (failureResponse) => {
       console.log('Request Filed');
