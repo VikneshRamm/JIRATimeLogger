@@ -22,9 +22,9 @@ export class FooterComponent implements OnInit {
   }
 
   getDataFromServer() {
-    const API_URL = environment.production ? '/api/time' : 'https://localhost:8080/api/time';
+    const API_URL = environment.production ? '/api/time' : 'http://localhost:8080/api/time';
     console.log(environment.production);
-    this.http.get<{time: string}>('/api/time').subscribe((response) => {
+    this.http.get<{time: string}>(API_URL).subscribe((response) => {
       this.dataFromServer = response.time;
     }, (failureResponse) => {
       console.log('Request Filed');
